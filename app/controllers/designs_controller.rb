@@ -2,7 +2,7 @@ class DesignsController < ApplicationController
   before_action :signed_in_user
   
   def new
-    @design = current_user.designs.build
+    @design = Design.new
   end
     
   def create
@@ -14,7 +14,11 @@ class DesignsController < ApplicationController
       render 'new'
     end
   end
-
+  
+  def show
+    @design = Design.find(params[:id])
+  end
+  
   def destroy
   end
   

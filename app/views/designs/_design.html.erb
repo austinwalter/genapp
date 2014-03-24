@@ -1,6 +1,7 @@
 <li>
   <div>
-  <span class="name"><%= design.name %></span>
+  <%= link_to image_tag("stl_file.png"), design %>
+  <span class="name"><%= link_to design.name, design %></span>
   <span class="timestamp">
     Created <%= time_ago_in_words(design.created_at) %> ago.
   </span>
