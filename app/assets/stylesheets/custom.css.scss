@@ -16,6 +16,10 @@ html {
   overflow-y: scroll;
 }
 
+body {
+  padding-top: 120px;
+}
+
 body, html {
   height: 100%;
   width: 100%;
@@ -258,3 +262,45 @@ aside {
     margin-bottom: 5px;
   }
 }
+
+/* designs*/
+.designs {
+  list-style: none;
+  margin: 10px 0 0 0;
+  //-moz-column-count: 3;
+  //-webkit-column-count: 3;
+  //column-count: 3;
+  li {
+    padding: 10px 0;
+    border-top: 1px solid #e8e8e8;
+    width: 200px;
+    display: inline-block;
+  }
+}
+.name {
+  display: block;
+}
+.timestamp {
+  color: $grayLight;
+}
+.gravatar {
+  float: left;
+  margin-right: 10px;
+}
+aside {
+  textarea {
+    height: 100px;
+    margin-bottom: 5px;
+  }
+}
+
+/* three.js */
+
+#viewer {
+  position: center;
+  width: -webkit-calc(100%); /* Safari */
+  width: calc(100%);
+  height: 100%;
+  border: 0px;
+}
+

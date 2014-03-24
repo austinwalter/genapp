@@ -27,6 +27,7 @@ describe User do
   it { should respond_to(:following?) }
   it { should respond_to(:follow!) }
   it { should respond_to(:unfollow!) }
+  it { should respond_to(:designs) }
   
   it { should be_valid }
   it { should_not be_admin }
@@ -199,6 +200,29 @@ describe User do
       
       it { should_not be_following(other_user) }
       its(:followed_users) { should_not include(other_user) }
+    end
+  end
+  
+  describe "design associations" do
+    before { @user.save }
+    let!(:older_design) do
+      FactoryGirl.create(:design, user: @user, created_at: 1.day.ago)
+    end
+    let!(:newer_design) do
+      FactoryGirl.create(:design, user: @user, created_at: 1.hour.ago)
+    end
+    
+    it "should have the right designs in the right order" do
+      expect(@user.designs.to_a).to eq [newer_design, older_design]
+    end
+    
+    it "should destroy associated designs" do
+      designs = @user.designs.to_a
+      @user.destroy
+      expect(designs).not_to be_empty
+      designs.each do |design|
+        expect(Design.where(id: design.id)).to be_empty
+      end
     end
   end
 end

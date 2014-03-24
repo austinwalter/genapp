@@ -21,6 +21,16 @@
       <%= will_paginate @microposts %>
     <% end %>
   </div>
+  <div class="span8">
+    <% if @user.designs.any? %>
+      <h3>Designs (<%= @user.designs.count %>)</h3>
+      <ul class="designs">
+          <%= render @designs %>
+      </ul>
+      <!%= will_paginate @designs %>
+    <% end %>
+  </div>
+
 </div>
 <%= @user.name %>, <%= @user.email %>
 

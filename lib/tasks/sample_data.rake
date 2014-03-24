@@ -2,7 +2,7 @@ namespace :db do
   desc "Fill database with sample data"
   task populate: :environment do
     make_users
-    make_microposts
+    make_designs
     make_relationships
   end
 end
@@ -24,11 +24,19 @@ def make_users
   end
 end
 
-def make_microposts
-  users = User.all(limit: 12)
+# def make_microposts
+#  users = User.all(limit: 12)
+#  25.times do
+#    content = Faker::Lorem.sentence(5)
+#    users.each { |user| user.microposts.create!(content: content) }
+#  end
+# end
+
+def make_designs
+  users = User.all(limit:12)
   25.times do
-    content = Faker::Lorem.sentence(5)
-    users.each { |user| user.microposts.create!(content: content) }
+    dname = Faker::Name.name
+    users.each { |user| user.designs.create!(name: dname) }
   end
 end
 

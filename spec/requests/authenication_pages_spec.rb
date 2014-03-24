@@ -44,7 +44,7 @@ describe "Authentication" do
   end
     
   describe "authorization" do
-    
+     
     describe "for non-signed-in users" do
       let(:user) { FactoryGirl.create(:user) }
             
@@ -99,6 +99,19 @@ describe "Authentication" do
           before { delete micropost_path(FactoryGirl.create(:micropost)) }
           specify { expect(response).to redirect_to(signin_path) }
         end
+      end
+      
+      describe "in the Designs controller" do
+        
+        describe "submitting to the create action" do
+          before { post designs_path }
+          specify { expect(response).to redirect_to(signin_path) }
+        end
+        
+        describe "submitting to the destroy action" do
+          before { delete design_path(FactoryGirl.create(:design)) }
+          specify { expect(response).to redirect_to(signin_path) }
+        end 
       end
       
       describe "when attempting to visit a protected page" do
